@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JULIA's Global Upgrade Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="CSS.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/quest.js"></script>
+    <script src="js/animation.js"></script>
+</head>
+<body>
+
+<section id="deactive_top">
+    <div id="quest-board" style="margin-top: 20px; border: 1px solid #00e5ff; padding: 15px;">
+        <p>「お疲れ様。脳のCPU温度が上がっていないかな？</p>
+        <p>5分間の『システムメンテナンス』を実行してからミッションを開始する？</p>
+        
+        <div id="timer-container" style="text-align: center; margin: 20px 0;">
+            <p id="timer-display" style="font-family: 'Orbitron'; font-size: 3rem; color: #ff5722;">05:00</p>
+        </div>
+
+        <div style="text-align: center;">
+            <button id="start-maintenance-btn" class="btn-minimal" onclick="startMaintenance()">
+                EXECUTE MAINTENANCE
+            </button>
+        </div>
+        
+        <div id="next-phase" style="display: none; text-align: center; margin-top: 20px;">
+            <p>REBOOT COMPLETE. 準備はいいか？</p>
+            <a href="Active.html" class="btn-minimal" style="border-color: #00ff00; color: #00ff00;">GO TO ACTIVE MODE</a>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

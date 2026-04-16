@@ -1,0 +1,298 @@
+/* 背景をさらに深く、計器が映える色に */
+body {
+    background: radial-gradient(circle at center, #0a0c10 0%, #050505 100%);
+    color: #e0e0e0;
+}
+
+        a {
+            color: #e0e0e0;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-shadow: 0 0 10px #00e5ff;
+            color: #fff;
+        }
+
+        #main-container {
+            width: 80%;
+            max-width: 600px;
+            border-left: 2px solid #00e5ff; /* 左側の細いラインだけで「プロ」を演出 */
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* ボタンも「塗り」じゃなく「枠線」で */
+        .btn-minimal {
+            background: transparent;
+            border: 1px solid #e0e0e0;
+            color: #e0e0e0;
+            padding: 10px 30px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .btn-minimal:hover {
+            border-color: #00e5ff;
+            color: #00e5ff;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00e5ff;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+
+
+        /* ◆━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◆ */
+
+        /* 英検カウントダウン　と　プログレス */
+        #Eiken_CountDown {
+            display: inline-block;
+            margin: 20px auto;
+        }
+        #eiken-special-ops {
+            display: inline-block;
+            border: 2px solid #e5ff00; 
+            padding: 20px; 
+            margin-bottom: 30px; 
+            background: rgba(229, 255, 0, 0.05);
+        }
+        
+        #eiken-special-ops .input-sync-box{
+            margin-top: 24px;
+            text-align: right !important;
+            display: block;
+        }
+        #eiken-special-ops .input-sync-box input {
+            width: 60px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #e5ff00;
+            color: #fff;
+            padding: 3px;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+        }
+
+        #eiken-special-ops .input-sync-box button {
+            background: #e5ff00;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            padding: 3px 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        #eiken-btn {
+            margin-left: 8px;
+        }
+
+        #eiken-bar-fill-pine {
+            height: 100%;
+            background: linear-gradient(90deg, #e5ff00, #bfff00); /* 英検カラー */
+            box-shadow: 0 0 15px rgba(229, 255, 0, 0.5);
+            width: 0%; /* 初期値 */
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        #eiken-bar-fill-mummy {
+            height: 100%;
+            background: linear-gradient(90deg, #e5ff00, #bfff00); /* 英検カラー */
+            box-shadow: 0 0 15px rgba(229, 255, 0, 0.5);
+            width: 0%; /* 初期値 */
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* ◆━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◆ */
+
+
+        /* 予定 */
+        .schedule-board {
+            flex: 1; 
+            border-left: 4px solid #00e5ff; 
+            padding-left: 15px; 
+            background: rgba(255,255,255,0.05); 
+            padding: 10px;
+        }
+
+        /* GemちゃんへLink */
+        .to_gemini {
+            flex: 1; 
+        }
+        
+        .to_gemini .btn-minimal{
+            display: flex; height: 100%; align-items: center; justify-content: center; border-color: #ff00ff; color: #ff00ff; font-size: 0.8rem; 
+        }
+
+
+        /* ◆━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◆ */
+
+
+        .status-container {
+            /* width: 100%; */
+            max-width: 600px;
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #444;
+        }
+
+        /* セクター全体のサイズ調整 */
+        #eiken-special-ops {
+            box-sizing: border-box; /* 枠線を含めたサイズ計算にする */
+            width: 100%;
+            max-width: 500px; /* 親要素からはみ出ないように */
+            margin: 20px auto;
+        }
+
+        /* セミパイチャート */
+        .gauge {
+            width: 200px; height: 100px; /* 半円のサイズ */
+            position: relative; overflow: hidden; margin: 0 auto;
+        }
+        .gauge-body {
+            width: 200px; height: 200px;
+            border-radius: 50%; background: #222; /* 背景色 */
+            position: relative;
+        }
+        .gauge-fill {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            border-radius: 50%; 
+            /* 初期状態は色なし */
+            background: conic-gradient(transparent 0deg, transparent 0deg);
+            transform: rotate(-90deg); /* 0度を左端にする */
+        }
+        /* ゲージの基本スタイル修正（数字が見えるように） */
+        .gauge-cover {
+            width: 160px; height: 160px; 
+            background: #050505; /* 背景色と合わせる */
+            border-radius: 50%; position: absolute; top: 20px; left: 20px;
+            display: flex; align-items: center; justify-content: center;
+            padding-bottom: 40px; /* 数字の位置を上に調整して隠れないように */
+            box-sizing: border-box;
+        }
+
+        /* 数字のカウントアップ感（オプション） */
+        .gauge-cover span {
+            transition: all 0.5s ease;
+        }
+
+        /* 小さいゲージ用調整 */
+        .small-gauge {
+            transform: scale(0.8);
+            margin-bottom: -20px;
+        }
+
+        .gauge-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #222;
+            display: inline-block;
+        }
+
+        .label {
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        /* 各項目の入力セクション */
+        .input-sync-box {
+            margin-top: 10px;
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .input-sync-box input {
+            width: 60px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ff41;
+            color: #fff;
+            padding: 3px;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+        }
+
+        .input-sync-box button {
+            background: #00ff41;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            padding: 3px 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        #entry {
+            margin: 40px auto;
+            padding: 20px;
+            border: 2px solid #00ff41;
+            background: rgba(0, 255, 65, 0.05);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            border-radius: 10px;
+            max-width: 500px;
+            /* ほんのり呼吸するように光らせる */
+            animation: border-glow 4s infinite alternate;
+        }
+
+        @keyframes border-glow {
+            from { box-shadow: 0 0 5px rgba(0, 255, 65, 0.2); }
+            to { box-shadow: 0 0 20px rgba(0, 255, 65, 0.5); }
+        }
+
+
+        .status-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+
+        /* ご褒美ガチャ */
+        #gacha-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            background: #555;
+            color: #888;
+            border: none;
+            border-radius: 50px;
+            cursor: not-allowed;
+            transition: all 0.3s;
+        }
+
+        /* ガチャ解放時のクラス */
+        #gacha-btn.unlocked {
+            background: linear-gradient(135deg, #ffd700, #ff8f00);
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            font-weight: bold;
+        }
+
+
+
+/* 完了した時の「真ん中に線」演出 */
+.completed {
+    text-decoration: line-through;
+    color: #666 !important;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+

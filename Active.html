@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JULIA's Global Upgrade Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="CSS.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/quest.js"></script>
+    <script src="js/animation.js"></script>
+</head>
+<body>
+
+<!-- 01 TODAY'S MISSION -->
+    <section id="mission_message">
+        <p>Welcome Back. 現在の最優先ミッションはこれだ。</p>
+    </section>
+
+    <section id="today's_quest">
+        <div id="quest-board" style="margin: 20px 0; border: 1px solid #00e5ff; padding: 15px;">
+            <h3 id="quest-title" style="color: #00e5ff;">SCANNING MISSION...</h3>
+            <p id="quest-detail" style="font-size: 0.9rem; color: #ccc;">Checking system status...</p>
+            <button id="complete-btn" class="btn-minimal" style="display:none;">MISSION COMPLETE</button>
+        </div>
+    </section>
+
+    <section id="mission_message">
+        <p>他のタスクは私が裏でホールドしている。目の前のバグ1つに集中せよ。</p>
+    </section>
+
+
+<!-- 02 EIKEN SECTION -->
+
+    <!-- 英検カウントダウンタイマー -->
+    <section id="Eiken_CountDown">
+        <div class="status-card" style="padding: 30px; border: 2px solid #e5ff00; background: rgba(229, 255, 0, 0.05);">
+            <p class="label" style="color: #e5ff00;"><i class="fas fa-bullseye"></i> NEXT EIKEN MISSION</p>
+            <div id="eiken-timer" style="font-family: 'Orbitron'; text-align: center; margin: 20px 0;">
+                </div>
+            <p style="font-size: 20px; color: #999; text-align: center;">Target Date: 2026.06.01</p>
+        </div>
+    </section>
+
+
+
+        <section id="eiken-special-ops">
+            <h2 style="color: #e5ff00; font-family: 'Orbitron'; margin-top: 0;">EIKEN SPECIAL OPS: MAY 2026</h2>
+            
+            <div class="status-container" style="margin-bottom: 20px;">
+                <div class="status-text">
+                    <span>AGENT PINE [PRE-2]</span>
+                </div>
+
+                <div class="progress-container-horizontal">
+                    <p class="label" style="color: #e5ff00; margin-bottom: 5px;">EIKEN PROGRESS</p>
+                        <div class="hp-bar-bg" style="width: 100%; background: rgba(229, 255, 0, 0.1); height: 12px; border-radius: 6px; overflow: hidden;">
+                            <div id="eiken-bar-fill-pine"></div>
+                        </div>
+                        <div style="text-align: right; font-family: 'Orbitron'; color: #e5ff00; margin-top: 5px;">
+                            <span id="eiken-percent">0</span>%
+                        </div>
+
+                        <div class="input-sync-box">
+                            <input type="number" id="input-eiken" placeholder="0">
+                            <button id="btn-numbers" onclick="sendProgressDirect('eiken')">SYNC DATA</button>
+                        </div>
+                </div>
+            </div>
+
+            <div class="status-container" style="opacity: 0.8;">
+                <div class="status-text" style="font-size: 0.9rem;">
+                    <span>ADMIN Mummy [PRE-1]</span>
+                </div>
+
+                <div class="progress-container-horizontal">
+                    <p class="label" style="color: #e5ff00; margin-bottom: 5px;">EIKEN PROGRESS</p>
+                        <div class="bar-bg" style="width: 100%; background: rgba(229, 255, 0, 0.1); height: 12px; border-radius: 6px; overflow: hidden;">
+                            <div id="eiken-bar-fill-mummy"></div>
+                        </div>
+                        <div style="text-align: right; font-family: 'Orbitron'; color: #e5ff00; margin-top: 5px;">
+                            <span id="eiken-percent">0</span>%
+                        </div>
+                </div>
+            </div>
+            
+            <p id="eiken-sync-msg" style="font-size: 0.8rem; text-align: right; color: #e5ff00;">
+                ※ 二人のシンクロ率が上昇中...
+            </p>
+        </section>
+
+        <section id="info-portal" style="display: flex; gap: 20px; margin-top: 20px;">
+            <div class="schedule-board">
+                <h3 style="font-family: 'Orbitron'; font-size: 0.9rem; color:#00e5ff;">MISSION: SCHOOL VISIT</h3>
+                <ul style="list-style: none; padding: 0; font-size: 0.8rem; color:#ccc;">
+                    <li style="margin-bottom: 8px; border-bottom: 1px solid #333;"><span style="color:#00e5ff;">05/15</span> - ○○中学校 見学会</li>
+                    <li style="margin-bottom: 8px; border-bottom: 1px solid #333;"><span style="color:#00e5ff;">06/10</span> - △△女子大附属 体験</li>
+                </ul>
+            </div>
+
+            <div class="to_gemini">
+                <a href="https://gemini.google.com/" target="_blank" class="btn-minimal">
+                    <i class="fas fa-brain"></i> PINE'S ROOM
+                </a>
+            </div>
+        </section>
+
+
+    <section id="status-dashboard" style="width: 100%; max-width: 800px; margin: 0 auto;">
+        <h1 style="text-align: center; letter-spacing: 5px;">UNIT STATUS</h1>
+
+        <div id="total-sync-sector" style="text-align: center; margin-bottom: 50px; transform: scale(1.2);">
+            <div class="gauge large-gauge">
+                <div class="gauge-body">
+                    <div id="total-gauge-fill" class="gauge-fill"></div>
+                    <div class="gauge-cover">
+                        <span id="total-percent">0</span>%
+                    </div>
+                </div>
+            </div>
+            <p class="label" style="color: #ff00ff; text-shadow: 0 0 10px #ff00ff;">【TOTAL SYNC RATE】</p>
+        </div>
+
+<!-- 各ゲージと入力フォーム -->
+
+
+        <div class="gauge-item">
+            <div class="gauge small-gauge">
+                <div class="gauge-body">
+                    <div id="numbers-gauge-fill" class="gauge-fill"></div>
+                    <div class="gauge-cover"><span id="numbers-percent">0</span>%</div>
+                </div>
+            </div>
+            <p class="label">NUMBERS</p>
+            
+            <div class="input-sync-box">
+                <input type="number" id="input-numbers" placeholder="0">
+                <button id="btn-numbers" onclick="sendProgressDirect('numbers')">SYNC DATA</button>
+            </div>
+        </div>
+
+        <div class="gauge-item">
+            <div class="gauge small-gauge">
+                <div class="gauge-body">
+                    <div id="geometry-gauge-fill" class="gauge-fill"></div>
+                    <div class="gauge-cover"><span id="geometry-percent">0</span>%</div>
+                </div>
+            </div>
+            <p class="label">GEOMETRY</p>
+
+            <div class="input-sync-box">
+                <input type="number" id="input-geometry" placeholder="0">
+                <button id="btn-geometry" onclick="sendProgressDirect('geometry')">SYNC DATA</button>
+            </div>
+        </div>
+
+        <div class="gauge-item">
+            <div class="gauge small-gauge">
+                <div class="gauge-body">
+                    <div id="logic-gauge-fill" class="gauge-fill"></div>
+                    <div class="gauge-cover"><span id="logic-percent">0</span>%</div>
+                </div>
+            </div>
+            <p class="label">LOGIC & DATA</p>
+
+            <div class="input-sync-box">
+                <input type="number" id="input-logic" placeholder="0">
+                <button id="btn-logic" onclick="sendProgressDirect('logic')">SYNC DATA</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
