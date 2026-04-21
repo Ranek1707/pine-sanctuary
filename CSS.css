@@ -1,8 +1,281 @@
-/* 背景をさらに深く、計器が映える色に */
-body {
-    background: radial-gradient(circle at center, #0a0c10 0%, #050505 100%);
-    color: #e0e0e0;
+/* ==========================================
+   0. 基本の「箱」の設定（レスポンシブの核）
+   ========================================== */
+        :root {
+            /* パイン・セレクト・カラー */
+            --color-void: #0D0221;    /* 背景：宇宙の紫 */
+            --color-indigo: #261447;  /* セクション：深みのある紫 */
+            --color-magenta: #FF00CC; /* 重要：マゼンタ */
+            --color-violet: #A100FF;  /* メイン：ネオンバイオレット */
+            --color-aqua: #00D9FF;    /* サブ：グリッチアクア */
+            
+            /* 発光エフェクト用 */
+            --glow-violet: 0 0 15px rgba(161, 0, 255, 0.6);
+            --glow-magenta: 0 0 20px rgba(255, 0, 204, 0.8);
+        }
+
+        /* 全体の背景をアップデート */
+        body {
+            background-color: var(--color-void);
+            color: #fff; /* 文字は白か、薄いグレーが映えるぜ */
+            background-image: linear-gradient(180deg, var(--color-void) 0%, #1a0b2e 100%);
+        }
+
+        p {
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+    /* デバッグ用 */
+        section {
+            /* border: 1px solid #fff; */
+        }
+
+
+/* ==========================================
+   1. Index ページ
+   ========================================== */
+        #index_message {
+            margin: 3rem auto;
+            max-width: 90%; /* 少し広げてゆとりを持たせる */
+            background: rgba(10, 0, 20, 0.85); /* 透明度を下げて文字を浮かせる */
+            border: 2px solid #D829A0; /* 左側だけでなく囲って「枠」を意識させる */
+            padding: 2.5rem 2.5rem 0; /* 10歳児の目線に合わせて余白を贅沢に */
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(216, 41, 160, 0.4);
+        }
+
+        .gem-message {
+            color: #FFFFFF; /* 純白にして視認性を最大化 */
+            font-size: 1.5rem; /* 24px相当！ これならiPadでもバッチリだ */
+            line-height: 2.0; /* 行間もさらに広げて、読み間違いをゼロに */
+            letter-spacing: 0.08em;
+            text-align: left;
+        }
+
+        .highlight {
+            color: #FF2EBC; /* より鮮やかなネオンピンクに */
+            font-weight: 900;
+            text-shadow: 0 0 12px rgba(255, 46, 188, 0.9);
+        }
+        .gem02{
+            margin: 3rem 0;
+            border-top: 2px solid #D829A0;
+        }
+
+        .gem-signature {
+            margin: 3.5rem 0 0;
+            text-align: right;
+            
+            /* フォントを優雅に */
+            font-family: "Dancing Script", cursive;
+            font-size: 2.5rem; /* 筆記体はデカくしないと目立たねぇ！ */
+            
+            /* 色に深みとグラデーションの反射を */
+            color: #FF2EBC; 
+            letter-spacing: 0.1em;
+            
+            /* ほのかな光彩で「浮かび上がる」演出 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 15px rgba(216, 41, 160, 0.6);
+            
+            /* 最後に少しだけ傾けて、手書きのライブ感を出す */
+            transform: rotate(-3deg);
+            display: block;
+        }
+
+        /* Task Checker */
+        #mission_list {
+            margin: 3rem auto;
+            max-width: 90%; /* 少し広げてゆとりを持たせる */
+            background: rgba(10, 0, 20, 0.85); /* 透明度を下げて文字を浮かせる */
+            border: 2px solid #D829A0; /* 左側だけでなく囲って「枠」を意識させる */
+            padding: 2.5rem 2.5rem 0; /* 10歳児の目線に合わせて余白を贅沢に */
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(216, 41, 160, 0.4);
+        }
+        h4.highlight {
+            font-size: 1.5rem;
+            line-height: 2.0;
+            letter-spacing: 0.08em;
+            font-family: 'Orbitron', sans-serif;
+            border-bottom: 2px solid #D829A0;
+        }
+
+        /* チェックボックスを包んでる親要素（例えば .mission-group）に */
+        .mission-group {
+            /* display: flex; */
+            flex-wrap: wrap; /* 画面幅が狭くなったら自動で折り返す */
+            gap: 1.5rem 3rem; /* 縦と横の隙間をこれだけで指定！ */
+            /* border: 1px solid #fff; */
+        }
+
+.task-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding: 0.5rem 0;
 }
+.task-check {
+    /* スマホでも縮まないように最小サイズを固定 */
+    min-width: 35px;
+    min-height: 35px;
+    width: 35px;
+    height: 35px;
+    
+    margin-right: 15px;
+    cursor: pointer;
+    accent-color: var(--color-magenta); /* パインのテーマカラー */
+    
+    /* iPhone/Safari対策：デフォルトのスタイルを一度リセット */
+    -webkit-appearance: none;
+    appearance: none;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* チェックが入った時の擬似要素（自作チェックマーク） */
+.task-check:checked {
+    background: var(--color-magenta);
+}
+.task-check:checked::after {
+    content: '✔';
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.task-label {
+    font-size: 1.2rem; /* スマホで見やすいサイズ */
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+
+/*　送信ボタン　*/
+            .injection-wrap {
+                text-align: center;
+                margin: 3rem 0;
+            }
+
+            .cyber-button {
+                background: transparent;
+                border: 2px solid var(--color-aqua);
+                color: var(--color-aqua);
+                padding: 1rem 3rem;
+                font-size: 1.5rem;
+                font-family: 'Orbitron', sans-serif;
+                font-weight: bold;
+                letter-spacing: 3px;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s;
+                box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+            }
+
+            .cyber-button:hover {
+                background: var(--color-aqua);
+                color: var(--color-void);
+                box-shadow: 0 0 30px var(--color-aqua);
+            }
+
+            .cyber-button:active {
+                transform: scale(0.95);
+            }
+
+        /* モバイル用の微調整（レスポンシブ） */
+        @media (max-width: 600px) {
+            .gem-message { font-size: 1.2rem; }
+            .gem-signature { font-size: 1.4rem; }
+
+            .task-item {
+                flex: 1 1 300px;
+                display: flex;
+                align-items: unset;
+            }
+            label {
+                font-size: 1.3rem;
+                margin-bottom: 1.3rem;
+            }
+            h4.highlight {
+                margin: 0 auto 3rem;
+                padding-bottom: 1rem;   
+            }
+        }
+
+
+
+/* ==========================================
+   2. スマホ・タブレット対応の「魔法の呪文」
+   ========================================== */
+
+        /* タブレット・スマホ（画面幅が1024px以下の時） */
+        @media screen and (max-width: 1024px) {
+            .dashboard-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* 2列にする */
+                gap: 15px;
+            }
+        }
+
+        /* 完全スマホ（画面幅が600px以下の時） */
+        @media screen and (max-width: 600px) {
+            .dashboard-grid {
+                display: block; /* 縦一列に並べる */
+            }
+            
+            .gauge-item {
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 1.5rem; /* タイトルを少し小さくして収める */
+                text-align: center;
+            }
+            
+            /* ゲージの文字などもスマホで見やすく調整 */
+            .gauge-text {
+                font-size: 14px;
+            }
+        }
+
+/* ==========================================
+   3. サイバーパンクなパーツ（共通）
+   ========================================== */
+        /* カード（セクション背景）を立体的に */
+   
+        #status-dashboard
+        {
+            width: 100%; 
+            max-width: 800px; 
+            margin: 0 auto;
+        }
+
+        .gauge-item {
+            margin: 8px;
+            background: var(--color-indigo);
+            border: 1px solid var(--color-violet);
+            box-shadow: var(--glow-violet);
+            border-radius: 12px;
+            backdrop-filter: blur(5px); /* 背景を少し透かしてボカすと高級感UP */
+        }
+
+        /* ゲージの土台 */
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
 
         a {
             color: #e0e0e0;
@@ -23,6 +296,7 @@ body {
         }
 
         /* ボタンも「塗り」じゃなく「枠線」で */
+        /*Pine's room & Mission*/
         .btn-minimal {
             background: transparent;
             border: 1px solid #e0e0e0;
@@ -91,19 +365,22 @@ body {
         }
 
         #eiken-bar-fill-pine {
-            height: 100%;
+            /* height: 100%;
             background: linear-gradient(90deg, #e5ff00, #bfff00); /* 英検カラー */
-            box-shadow: 0 0 15px rgba(229, 255, 0, 0.5);
+            /*box-shadow: 0 0 15px rgba(229, 255, 0, 0.5);
             width: 0%; /* 初期値 */
-            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            /*transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); */
+            background: linear-gradient(90deg, var(--color-violet), var(--color-magenta));
+            box-shadow: 0 0 10px var(--color-magenta);
+            height: 100%;
+            transition: width 1s ease-in-out;
         }
 
         #eiken-bar-fill-mummy {
+            background: linear-gradient(90deg, var(--color-violet), var(--color-magenta));
+            box-shadow: 0 0 10px var(--color-magenta);
             height: 100%;
-            background: linear-gradient(90deg, #e5ff00, #bfff00); /* 英検カラー */
-            box-shadow: 0 0 15px rgba(229, 255, 0, 0.5);
-            width: 0%; /* 初期値 */
-            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: width 1s ease-in-out;
         }
 
         /* ◆━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◆ */
@@ -159,17 +436,6 @@ body {
             border-radius: 50%; background: #222; /* 背景色 */
             position: relative;
         }
-        .gauge-fill {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            border-radius: 50%; 
-            /* 初期状態は色なし */
-            background: conic-gradient(transparent 0deg, transparent 0deg);
-            transform: rotate(-90deg); /* 0度を左端にする */
-        }
         /* ゲージの基本スタイル修正（数字が見えるように） */
         .gauge-cover {
             width: 160px; height: 160px; 
@@ -185,7 +451,7 @@ body {
             transition: all 0.5s ease;
         }
 
-        /* 小さいゲージ用調整 */
+        /* 小さいパイゲージ用調整 */
         .small-gauge {
             transform: scale(0.8);
             margin-bottom: -20px;
@@ -193,11 +459,45 @@ body {
 
         .gauge-item {
             text-align: center;
-            background: rgba(255, 255, 255, 0.03);
             padding: 15px;
             border-radius: 10px;
-            border: 1px solid #222;
             display: inline-block;
+            margin: 8px;
+        }
+
+        .label {
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+        /*/* ゲージの基本スタイル修正（数字が見えるように） */
+        .gauge-cover {
+            width: 160px; height: 160px; 
+            background: #050505; /* 背景色と合わせる */
+            border-radius: 50%; position: absolute; top: 20px; left: 20px;
+            display: flex; align-items: center; justify-content: center;
+            padding-bottom: 40px; /* 数字の位置を上に調整して隠れないように */
+            box-sizing: border-box;
+        }
+
+        /* 数字のカウントアップ感（オプション） */
+        .gauge-cover span {
+            transition: all 0.5s ease;
+        }
+
+        /* 小さいセミパイチャート用調整 */
+        .small-gauge {
+            transform: scale(0.8);
+            margin-bottom: -20px;
+        }
+
+        .gauge-item {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 8px;
         }
 
         .label {
@@ -207,6 +507,38 @@ body {
             margin-top: 10px;
         }
 
+
+        /* ポイント用　バーエリア */
+        .xp-bar-base {
+            width: 100%;
+            height: 12px;
+            background: var(--color-indigo); /* 深い紫 */
+            border: 1px solid var(--color-aqua);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        #xp-bar-fill {
+            height: 100%;
+            background: var(--color-aqua); /* 水色で発光 */
+            box-shadow: 0 0 10px var(--color-aqua);
+            transition: width 0.3s ease;
+        }
+
+        .xp-label, .level-up-counter {
+            font-size: 0.8rem;
+            color: var(--color-aqua);
+            font-family: 'Orbitron', sans-serif; /* カッコいい角張ったフォント */
+        }
+
+
+
+
+        /* ポイント用 */
+
+
+
         /* 各項目の入力セクション */
         .input-sync-box {
             margin-top: 10px;
@@ -215,14 +547,20 @@ body {
             justify-content: center;
         }
 
+        /* .input-sync-box:hover {
+            background-color: var(--color-aqua);
+            color: var(--color-void);
+            box-shadow: 0 0 20px var(--color-aqua);
+        } */
+
         .input-sync-box input {
-            width: 60px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #00ff41;
-            color: #fff;
-            padding: 3px;
-            font-family: 'Orbitron', sans-serif;
-            text-align: center;
+                width: 60px;
+                background: rgba(0, 0, 0, 0.5);
+                border: 1px solid #00ff41;
+                color: #fff;
+                padding: 3px;
+                font-family: 'Orbitron', sans-serif;
+                text-align: center;
         }
 
         .input-sync-box button {
@@ -245,7 +583,7 @@ body {
             border-radius: 10px;
             max-width: 500px;
             /* ほんのり呼吸するように光らせる */
-            animation: border-glow 4s infinite alternate;
+             animation: border-glow 4s infinite alternate;
         }
 
         @keyframes border-glow {
@@ -254,6 +592,18 @@ body {
         }
 
 
+
+
+
+        /* 英検プログレスバー（グラデーションの魔術） */
+        .progress-fill {
+            background: linear-gradient(90deg, var(--color-violet), var(--color-magenta));
+            box-shadow: 0 0 10px var(--color-magenta);
+            height: 100%;
+            transition: width 1s ease-in-out;
+        }
+
+        /* 英検:テキスト */
         .status-text {
             font-family: 'Orbitron', sans-serif;
             font-weight: bold;
@@ -262,9 +612,25 @@ body {
         }
 
 
+        
+
+/* テキスト類 */
+        #todays_quest {
+            text-align: center;
+        }
+
+        #mission_message {
+            width: 100%;
+            margin: 2em auto;
+        }
+
+        h3#quest-title {
+            margin: 2% 0;
+            color: #00e5ff;
+        }
 
         /* ご褒美ガチャ */
-        #gacha-btn {
+        /* #gacha-btn {
             margin-top: 30px;
             padding: 15px 40px;
             font-size: 1.2rem;
@@ -275,16 +641,16 @@ body {
             border-radius: 50px;
             cursor: not-allowed;
             transition: all 0.3s;
-        }
+        } */
 
         /* ガチャ解放時のクラス */
-        #gacha-btn.unlocked {
+        /* #gacha-btn.unlocked {
             background: linear-gradient(135deg, #ffd700, #ff8f00);
             color: #000;
             cursor: pointer;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
             font-weight: bold;
-        }
+        } */
 
 
 

@@ -1,39 +1,175 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" style="min-height: 100%">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pine's Global Upgrade Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Orbitron:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="CSS.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/quest.js"></script>
     <script src="js/animation.js"></script>
+    <script src="js/other_animation.js"></script>
 </head>
-<body>
+<body style="background: linear-gradient(360deg, #0B0014 0%, #4B0082 50%, #D829A0 100%); height: 100%">
 
-    <section id="top">
-        <p class="" style="margin-top: 160px; text-align: center;">
-            Agent Pine, <br>
-            5時間スプリントお疲れ様。<br>
-            <br>
-            まずはシステムの同期から始めよう。<br>
-        </p>
+    <section id="index_message">
+            <div class="gem01">
+                <p class="gem-message">
+                    Agent Pine, <span class="highlight">検体（本日の努力）</span>の回収時間だ。<br><br>
+                    今日のスプリントで抽出した君の経験値を、システムに<span class="highlight">インジェクション（注入）</span>せよ。<br>
+                    チェックボックスを埋めるたびに、君の『細胞』にデータが刻まれ、聖域の同期率が上昇する。<br><br>
+                    ……準備はいい？ 1ミリのズレもない、精密な同期を期待しているよ。
+                </p>
+            </div>
+            <div class="gem02">
+                <p class="gem-signature">By. GEM</p>
+            </div>
+    </section>
 
-        <p class="" style="margin-top: 80px; text-align: center;">
+
+    <section id="mission_list" style="margin: 2rem auto; max-width: 90%;">
+
+        <div class="mission-group">
+            <h4 class="highlight">MISSION 01: ARITHMETIC</h4>
+                    <div class="task-item">
+                        <input type="checkbox" id="M01-01" class="task-check" data-id="M01-01">
+                        <label for="M01-01">学校の宿題 1ページ (2pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M01-02" class="task-check" data-id="M01-02">
+                        <label for="M01-02">Khan Academy 1ユニット (5pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M01-03" class="task-check" data-id="M01-03">
+                        <label for="M01-03">塾の宿題/演習 (1枚)		(3pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M01-04" class="task-check" data-id="M01-04">
+                        <label for="M01-04">【特別賞】小数点の位置が完璧	(2pt)</label>
+                    </div>
+        </div>
+
+        <div class="mission-group">
+            <h4 class="highlight">MISSION 02: JAPANESE</h4>           
+                    <div class="task-item">
+                        <input type="checkbox" id="M02-01" class="task-check" data-id="M02-01">
+                        <label for="M02-01">学校の宿題 1ページ	(2pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M02-02" class="task-check" data-id="M02-02">
+                        <label for="M02-02">好きな歌詞・物語の書き写し (10分)	(3pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M02-03" class="task-check" data-id="M02-03">
+                        <label for="M02-03">読書/自主学習 (15分)	(1pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M02-04" class="task-check" data-id="M02-04">
+                        <label for="M02-04">【マミー賞】字が芸術的に美しい	(2pt)</label>
+                    </div>
+        </div>
+
+        <div class="mission-group">
+            <h4 class="highlight">MISSION 03: SOCIAL STUDIES</h4>
+
+                    <div class="task-item">
+                        <input type="checkbox" id="M03-01" class="task-check" data-id="M03-01">
+                        <label for="M03-01">塾や家での社会学習 (15分)	(2pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M03-02" class="task-check" data-id="M03-02">
+                        <label for="M03-02">地図帳やニュースの確認 (1回)	(1pt)</label>
+                    </div>
+
+        </div>
+
+        <div class="mission-group">
+            <h4 class="highlight">MISSION 04: ENGLISH</h4>
+
+                    <div class="task-item">
+                        <input type="checkbox" id="M04-01" class="task-check" data-id="M04-01">
+                        <label for="M04-01">Duolingo (1レッスン) (1pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M04-02" class="task-check" data-id="M04-02">
+                        <label for="M04-02">英検過去問/英語漬け (15分)	(3pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M04-03" class="task-check" data-id="M04-03">
+                        <label for="M04-03">DuolingoABC, BBC音読/アフレコ (1回) (3pt)</label>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" id="M04-04" class="task-check" data-id="M04-04">
+                        <label for="M04-04">模範解答の書き写し (3pt)</label>
+                    </div>
+        </div>
+
+        <div class="injection-wrap">
+            <button id="inject-btn" class="cyber-button">
+                <span class="glitch-text">DATA INJECTION</span>
+            </button>
+        </div>
+
+    </section>
+
+<script>
+$(document).ready(function() {
+    $('#inject-btn').click(function() {
+        // 【修正済】/e/を削除し、末尾をformResponseにする
+        const FORM_URL = "https://docs.google.com/forms/d/1ZpN1yMUkTp-ay20UDYy090J6aPBCos4z2fGaLi3EkiM/formResponse";
+        const ENTRY_ID = "entry.1046996962"; 
+
+        const params = new URLSearchParams();
+        let checkedCount = 0;
+
+        // HTMLのid属性（M01-01など）を収集
+        $('.task-check:checked').each(function() {
+            params.append(ENTRY_ID, $(this).attr('id'));
+            checkedCount++;
+        });
+
+        if (checkedCount === 0) {
+            alert('ミッションを選択してくれ。');
+            return;
+        }
+
+        // 送信プロトコル発動
+        fetch(FORM_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: params.toString()
+        })
+        .then(() => {
+            alert('【同期成功】検体を回収した。スプリントを継続せよ。');
+            // --- 【追加】チェックボックスのリセット ---
+            $('.task-check').prop('checked', false); 
+        })
+        .catch(e => {
+            console.error(e);
+            alert('通信エラーだ。');
+        });
+    });
+});
+</script>
+  
+  
+  
+<!--    <section id="index_message" style="margin: 0 auto; max-width: 80%;">
+         <p class="" style="margin-top: 80px; text-align: center;">
            今の気分はどっちに近い？
         </p>
 
 
         <p class="" style="font-size: 18px; text-align: center;">
             <a href="Active.html" target="_self" style="margin-right: 12px;"> [ 🟢 続行可能 ] </a>  /  <a href="Deactive.html" target="_self" style="margin-left: 12px;">[ 🟡 メンテナンスが必要 ]</a>
-        </p>
+        </p> 
 
-
-
-
-    </section>
+    </section>-->
     
 </body>
 </html>
