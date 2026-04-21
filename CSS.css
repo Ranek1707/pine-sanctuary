@@ -108,55 +108,56 @@
             /* border: 1px solid #fff; */
         }
 
-.task-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.2rem;
-    padding: 0.5rem 0;
-}
-.task-check {
-    /* スマホでも縮まないように最小サイズを固定 */
-    min-width: 35px;
-    min-height: 35px;
-    width: 35px;
-    height: 35px;
-    
-    margin-right: 15px;
-    cursor: pointer;
-    accent-color: var(--color-magenta); /* パインのテーマカラー */
-    
-    /* iPhone/Safari対策：デフォルトのスタイルを一度リセット */
-    -webkit-appearance: none;
-    appearance: none;
-    border: 2px solid #fff;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.3);
-    position: relative;
-}
+        .task-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            padding: 0.5rem 0;
+        }
+        .task-check {
+            /* スマホでも縮まないように最小サイズを固定 */
+            min-width: 35px;
+            min-height: 35px;
+            width: 35px;
+            height: 35px;
+            
+            margin-right: 15px;
+            cursor: pointer;
+            accent-color: var(--color-magenta); /* パインのテーマカラー */
+            
+            /* iPhone/Safari対策：デフォルトのスタイルを一度リセット */
+            -webkit-appearance: none;
+            appearance: none;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
 
 /* チェックが入った時の擬似要素（自作チェックマーク） */
-.task-check:checked {
-    background: var(--color-magenta);
-}
-.task-check:checked::after {
-    content: '✔';
-    position: absolute;
-    color: white;
-    font-size: 20px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
+            .task-check:checked {
+                background: var(--color-magenta);
+            }
+            .task-check:checked::after {
+                content: '✔';
+                position: absolute;
+                color: white;
+                font-size: 20px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
 
 
-.task-label {
-    font-size: 1.2rem; /* スマホで見やすいサイズ */
-    line-height: 1.4;
-    cursor: pointer;
-}
+            .task-label {
+                font-size: 1.2rem; /* スマホで見やすいサイズ */
+                line-height: 1.4;
+                cursor: pointer;
+            }
 
 
 /*　送信ボタン　*/
+
             .injection-wrap {
                 text-align: center;
                 margin: 3rem 0;
@@ -188,7 +189,8 @@
                 transform: scale(0.95);
             }
 
-        /* モバイル用の微調整（レスポンシブ） */
+/* モバイル用の微調整（レスポンシブ） */
+
         @media (max-width: 600px) {
             .gem-message { font-size: 1.2rem; }
             .gem-signature { font-size: 1.4rem; }
